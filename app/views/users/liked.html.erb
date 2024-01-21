@@ -24,8 +24,9 @@
   </div>
 </div>
 
+<%= current_user.liked_photos.count %>
 
- <% @user.own_photos.each do |photo| %>
+ <% current_user.liked_photos.each do |photo| %>
   <div class="row mb-4">
     <div class="col-md-6 offset-md-3">
       <div class="card">

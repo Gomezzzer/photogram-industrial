@@ -8,6 +8,20 @@ task example_sample_data: :environment do
   Photo.delete_all
   User.delete_all
 
+  usernames = Array.new { Faker::Name.first_name }
+
+  usernames << "alice"
+  usernames << "bob"
+
+  usernames.each do |username|
+    User.create(
+      email: "#{username}@example.com",
+      password: "password",
+      username: username.downcase,
+      private: [true, false].sample,
+    )
+  end
+
   12.times do
     name = Faker::Name.first_name
     User.create(
@@ -69,4 +83,3 @@ task example_sample_data: :environment do
   p "There are now #{Like.count} likes."
   p "There are now #{Comment.count} comments."
 end
-
